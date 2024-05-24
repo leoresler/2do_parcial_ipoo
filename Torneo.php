@@ -56,9 +56,11 @@ class Torneo {
             if (($partido instanceof PartidoFutbol && $deporte === 'futbol') || ($partido instanceof PartidoBasquetbol && $deporte === 'basquet')) {
                 $ganadorPartido = $partido->darEquipoGanador();
                 if (!is_array($ganadorPartido)) {
-                    $ganadores[] = $ganadorPartido;
+                    $ganadores[] = ['partido' => $partido, 'equipo' => $ganadorPartido];
                 } else {
-                    $ganadores = array_merge($ganadores, $ganadorPartido);
+                    foreach ($ganadorPartido as $equipo) {
+                        $ganadores[] = ['partido' => $partido, 'equipo' => $equipo];
+                    }
                 }
             }
         }
