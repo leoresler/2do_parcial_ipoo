@@ -32,38 +32,33 @@ $objE12 = neW Equipo("Equipo Doce", "Cap.Doce",11,$catMayores);
 // 1.
 $torneo = new Torneo(100000);
 
-// 2. a.
+// Crear objetos de partidos de básquet
 $partidoBasquet1 = new PartidoBasquetbol(11, '2024-05-05', $objE7, 80, $objE8, 120, 7);
 $partidoBasquet2 = new PartidoBasquetbol(12, '2024-05-06', $objE9, 81, $objE10, 110, 8);
 $partidoBasquet3 = new PartidoBasquetbol(13, '2024-05-07', $objE11, 115, $objE12, 85, 9);
 
-// 2. b.
+// Crear objetos de partidos de fútbol
 $partidoFutbol1 = new PartidoFutbol(14, '2024-05-07', $objE1, 3, $objE2, 2);
 $partidoFutbol2 = new PartidoFutbol(15, '2024-05-08', $objE3, 0, $objE4, 1);
 $partidoFutbol3 = new PartidoFutbol(16, '2024-05-09', $objE5, 2, $objE6, 3);
 
-// 3.
-$torneo->ingresarPartido($objE5, $objE11, '2024-05-23', 'Futbol');
-$torneo->ingresarPartido($objE11, $objE11, '2024-05-23', 'basquetbol');
-$torneo->ingresarPartido($objE9, $objE10, '2024-05-25', 'basquetbol');
-
-// ingreso de partidos
-echo "Respuesta partido 1: ";
+// Agregar los partidos al torneo
+echo "Respuesta al ingresar partido 1: ";
 $resp1 = $torneo->ingresarPartido($objE5, $objE11, '2024-05-23', 'futbol');
-echo $resp1 . "\n";
-echo "Cantidad de equipos: " . count($torneo->getColPartidos()) . "\n";
+echo ($resp1 !== null) ? "Partido ingresado correctamente\n" : "No se pudo ingresar el partido\n";
+echo "Cantidad de equipos del torneo: " . count($torneo->getColPartidos()) . "\n";
 
-echo "Respuesta partido 2: ";
+echo "Respuesta al ingresar partido 2: ";
 $resp2 = $torneo->ingresarPartido($objE11, $objE11, '2024-05-23', 'basquet');
-echo $resp2 . "\n";
-echo "Cantidad de equipos: " . count($torneo->getColPartidos()) . "\n";
+echo ($resp2 !== null) ? "Partido ingresado correctamente\n" : "No se pudo ingresar el partido\n";
+echo "Cantidad de equipos del torneo: " . count($torneo->getColPartidos()) . "\n";
 
-echo "Respuesta partido 3: ";
+echo "Respuesta al ingresar partido 3: ";
 $resp3 = $torneo->ingresarPartido($objE9, $objE10, '2024-05-25', 'basquet');
-echo $resp3 . "\n";
-echo "Cantidad de equipos: " . count($torneo->getColPartidos()) . "\n";
+echo ($resp3 !== null) ? "Partido ingresado correctamente\n" : "No se pudo ingresar el partido\n";
+echo "Cantidad de equipos del torneo: " . count($torneo->getColPartidos()) . "\n";
 
-// dar ganadores de básquet y fútbol
+// Dar ganadores de básquet y fútbol
 echo "Ganadores de básquet: ";
 foreach ($torneo->darGanadores('basquet') as $ganador) {
     echo $ganador . ", ";
@@ -76,7 +71,7 @@ foreach ($torneo->darGanadores('futbol') as $ganador) {
 }
 echo "\n";
 
-// calcular premio para cada partido
+// Calcular premio para cada partido
 echo "Premio para partido 1: ";
 foreach ($torneo->calcularPremioPartido($partidoFutbol1) as $resultado) {
     echo "Equipo ganador: " . $resultado['equipoGanador'] . ", Premio: " . $resultado['premioPartido'] . "\n";
@@ -92,8 +87,7 @@ foreach ($torneo->calcularPremioPartido($partidoBasquet2) as $resultado) {
     echo "Equipo ganador: " . $resultado['equipoGanador'] . ", Premio: " . $resultado['premioPartido'] . "\n";
 }
 
-// 4.
-echo $torneo;
+// Mostrar el objeto Torneo creado
+echo "Objeto Torneo creado: " . $torneo . "\n";
 
 ?>
-
